@@ -1,0 +1,58 @@
+/* Logo on navigation bar */
+ .logo-image{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #000000;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+body {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #333333;
+}
+
+header {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #b5b5b5;
+}
+
+.logo-row {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+}
