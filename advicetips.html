@@ -1,5 +1,6 @@
+<html>
 	<head>
-		<title>AdWise Home</title>
+		<title>Browse advice</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/style.css" />
@@ -55,12 +56,32 @@ body {
 
 .container {
   background-color: #333333;
+  padding:5px;
+  text-align: center;
+}
+
+h1, h2, h3, p {
+  color: #FFFFFF;
+  text-align: center;
+}
+
+a {
+  color: #F61AEC;
+}
+
+.buttoncon {
+  background-color: #1A1A1A;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 10px 24px;
+  text-align: center;
 }
 </style>
 	</head>
 
- <body>
 
+  <body>
+    
 <div class="topnav">
 
 <a class="navbar-brand" href="/">
@@ -68,18 +89,40 @@ body {
             <img src="https://cdn.glitch.com/e4331c28-5348-4c6d-a2d6-a8777f81ce5d%2FIcon%2011.png?v=1606515029075" class="img-fluid">
       </div>
 </a>
-  <a class="active" href="/home.html">Home</a>
-  <a href="advice.html">Browse advice</a> 
-  <a href="advicetips.html">How to give good advice?</a>
+  <a href="/home.html">Home</a>
+  <a href="advice.html">Browse advice</a>
+  <a class="active" href="advicetips.html">How to give good advice?</a>
 </div>
 
 <div style="padding-left:16px">
 
-<h1> 
+<h2> Don't know how to give good advice?</h2>
+<h3> You came to the right place </h3>
+
+<hr>
+
+<div class="container">
+
+<h3> Some questions to think about: </h3>
+<br>
+<p>What is something you wish you had known sooner? </p><br>
+<p>If you are going to interview a candaidate for a junior position in your company, what skills you are looking for?</p><br>
+<p>What is your company culture?</p><br>
 
 </div>
 
+<div class="container">
 
+<a href="advice.html">Get some inspiration</a>
+<br>
+<p> </p>
+</div>
 
+<div class="buttoncon">
+<button id="myButton" onclick="location.href = 'https://adwiseapp.stackblitz.io/home.html'">Try out now</button>
+<br>
+
+</div>
+<br>
   </body>
 </html>
