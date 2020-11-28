@@ -85,43 +85,39 @@ h1, h2, h3, p {
 <h1> Give career advice </h1>
 
 <br>
-<form onsubmit="return results();" method="POST"> 
+<form> 
 
-<textarea name="advice" id="advice" ols="40" rows="5" placeholder="Career advice"></textarea><br><br>
+<textarea name="advice" id="user_input" ols="40" rows="5" placeholder="Career advice"></textarea><br><br>
 
-<input id="industry" type="text" placeholder="Industry" required><br><br>
+<input id="user_input" type="text" placeholder="Industry" required><br><br>
 
-<input id="country" type="country" placeholder="Country" required><br><br>
+<input id="user_input" type="country" placeholder="Country" required><br><br>
 
-<input id="company" type="text" placeholder="Company"><br><br>
+<input id="user_input" type="text" placeholder="Company"><br><br>
 
-<input id="company" type="text" placeholder="Position"><br><br>
+<input id="user_input" type="text" placeholder="Position"><br><br>
 
-<input id="name" type="text" placeholder="Name"><br><br>
+<input id="user_input" type="text" placeholder="Name"><br><br>
 
-<button onclick="showInput();" value="Submit">Submit</button> <br><br>
+<input type="submit" onclick="showInput();"><br/>
+
 </form>
 </div>
 
 <div class="container">
 <label><h2>Advice log:</h2></label>
+<output id="output"></output>
 <p><span id='display'></span></p>
 </div>
-<script>
-  
-  function showInput() {
-  document.getElementById('display').innerHTML = 
-   document.getElementById("advice").value;
-   document.getElementById("industry").value;
-   document.getElementById("country").value;
-   document.getElementById("position").value;
-   document.getElementById("name").value;
 
-  document.write("<h2>Thank you for submitting your advice</h2>")
-  document.write("<a href='home.html'>Add another advice</a>")
+
+
+  <script language="JavaScript">
+    function showInput() {
+        document.getElementById('display').innerHTML = 
+                    document.getElementById("user_input").value;
     }
-
-</script>
+  </script>
 
 
 
