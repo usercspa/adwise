@@ -87,26 +87,26 @@ h1, h2, h3, p {
 <br>
 <form> 
 
-<textarea name="advice" id="user_input" ols="40" rows="5" placeholder="Career advice"></textarea><br><br>
+<textarea name="advice" id="id1" ols="40" rows="5" placeholder="Career advice"></textarea><br><br>
 
-<input id="user_input" type="text" placeholder="Industry" required><br><br>
+<input id="id2" type="text" placeholder="Industry" required><br><br>
 
-<input id="user_input" type="country" placeholder="Country" required><br><br>
+<input id="id3" type="country" placeholder="Country" required><br><br>
 
-<input id="user_input" type="text" placeholder="Company"><br><br>
+<input id="id4" type="text" placeholder="Company"><br><br>
 
-<input id="user_input" type="text" placeholder="Position"><br><br>
+<input id="id5" type="text" placeholder="Position"><br><br>
 
-<input id="user_input" type="text" placeholder="Name"><br><br>
+<input id="id6" type="text" placeholder="Name"><br><br>
 
-<input type="submit" onclick="showInput();"><br/>
+<button onclick="showInput();">post</button><br/>
+
 
 </form>
 </div>
 
 <div class="container">
 <label><h2>Advice log:</h2></label>
-<output id="output"></output>
 <p><span id='display'></span></p>
 </div>
 
@@ -115,7 +115,12 @@ h1, h2, h3, p {
   <script language="JavaScript">
     function showInput() {
         document.getElementById('display').innerHTML = 
-                    document.getElementById("user_input").value;
+                    document.getElementById("id1").value;
+                    document.getElementById("id2").value;
+                    document.getElementById("id3").value;
+                    document.getElementById("id4").value;
+                    document.getElementById("id5").value;
+                    document.getElementById("id6").value;
     }
   </script>
 
