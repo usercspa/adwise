@@ -1,6 +1,5 @@
-console.log("hello!");
 // Import stylesheets
-import "./style.css";
+import './style.css';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 
@@ -8,33 +7,29 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-import * as firebaseui from "firebaseui";
+import * as firebaseui from 'firebaseui';
 
 // Document elements
 const loginButton = document.getElementById('login');
 
+const form = document.getElementById('leave-message');
+const input = document.getElementById('message');
+
 async function main() {
 
-// Add Firebase project configuration object here
-const firebaseConfig = {
-  apiKey: "AIzaSyDdr9MunyX637exjpmhUrniwwA2iY8_ylo",
-  authDomain: "adwise-62059.firebaseapp.com",
-  databaseURL: "https://adwise-62059.firebaseio.com",
-  projectId: "adwise-62059",
-  storageBucket: "adwise-62059.appspot.com",
-  messagingSenderId: "153093046371",
-  appId: "1:153093046371:web:b17763f4b0e2c29c7f7856",
-  measurementId: "G-RRKVJFLMQG"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-
   // Add Firebase project configuration object here
-  // var firebaseConfig = {};
-
-  // firebase.initializeApp(firebaseConfig);
+// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCjenEqWmXfr-bCVU5vRiry2ondQbXhrOU",
+    authDomain: "learn-e1cb6.firebaseapp.com",
+    databaseURL: "https://learn-e1cb6.firebaseio.com",
+    projectId: "learn-e1cb6",
+    storageBucket: "learn-e1cb6.appspot.com",
+    messagingSenderId: "1004044510119",
+    appId: "1:1004044510119:web:c4754e5d286e8ad280cc82"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
   // FirebaseUI config
   const uiConfig = {
@@ -52,12 +47,9 @@ firebase.initializeApp(firebaseConfig);
     }
   };
 
-  // const ui = new firebaseui.auth.AuthUI(firebase.auth());
-}
+  const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-// Initialize the FirebaseUI widget using Firebase
-const ui = new firebaseui.auth.AuthUI(firebase.auth());
-
+// Called when the user clicks the login button
 loginButton.addEventListener("click",
  () => {
     if (firebase.auth().currentUser) {
@@ -71,10 +63,16 @@ loginButton.addEventListener("click",
 // Listen to the current Auth state
 firebase.auth().onAuthStateChanged((user)=> {
   if (user) {
-    startRsvpButton.textContent = "LOGOUT"
+    loginButton.textContent = "LOGOUT"
   }
   else {
-    loginButton.textContent = "Login"
+    loginButton.textContent = "Login/ Register"
   }
 });
+
+
+
+}
+
+
 main();
