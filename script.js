@@ -11,10 +11,26 @@ import "firebase/firestore";
 import * as firebaseui from "firebaseui";
 
 // Document elements
-const form = document.getElementById("leave-message");
-const input = document.getElementById("message");
+const loginButton = document.getElementById('login');
 
 async function main() {
+
+// Add Firebase project configuration object here
+const firebaseConfig = {
+  apiKey: "AIzaSyDdr9MunyX637exjpmhUrniwwA2iY8_ylo",
+  authDomain: "adwise-62059.firebaseapp.com",
+  databaseURL: "https://adwise-62059.firebaseio.com",
+  projectId: "adwise-62059",
+  storageBucket: "adwise-62059.appspot.com",
+  messagingSenderId: "153093046371",
+  appId: "1:153093046371:web:b17763f4b0e2c29c7f7856",
+  measurementId: "G-RRKVJFLMQG"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
   // Add Firebase project configuration object here
   // var firebaseConfig = {};
 
@@ -38,4 +54,27 @@ async function main() {
 
   // const ui = new firebaseui.auth.AuthUI(firebase.auth());
 }
+
+// Initialize the FirebaseUI widget using Firebase
+const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+loginButton.addEventListener("click",
+ () => {
+    if (firebase.auth().currentUser) {
+      // User is signed in; allows user to sign out
+      firebase.auth().signOut();
+    } else {
+      // No user is signed in; allows user to sign in
+      ui.start("#firebaseui-auth-container", uiConfig);
+    }
+});
+// Listen to the current Auth state
+firebase.auth().onAuthStateChanged((user)=> {
+  if (user) {
+    startRsvpButton.textContent = "LOGOUT"
+  }
+  else {
+    loginButton.textContent = "Login"
+  }
+});
 main();
