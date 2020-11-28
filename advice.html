@@ -61,6 +61,11 @@
         background-color: #1A1A1A;
         text-align: center;
       }
+
+      label {
+        color: #FFFFFF;
+      }
+      
     </style>
   </head>
 
@@ -81,5 +86,17 @@
     <br><br>
     <div class="container"><input type="text" placeholder="Search..">
     <button type="submit">Search</button>
-    </div>
+    <br><br>
+
+    <!-- Control buttons -->
+<div id="filterButton">
+  <label for "btn"> Filter by: </label>
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('country')"> Country</button>
+  <button class="btn" onclick="filterSelection('company')"> Company</button>
+  <button class="btn" onclick="filterSelection('position')"> Position</button>
+  <button class="btn" onclick="filterSelection('name')"> Name</button>
+</div>
+
+   </div>
 </html>
