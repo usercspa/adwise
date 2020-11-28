@@ -1,0 +1,358 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="script.js"></script>
+
+    <title>AdWise login</title>
+    <meta name="description" content="Ultimate advicer" />
+
+    <!-- add shortcut icon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.com/e4331c28-5348-4c6d-a2d6-a8777f81ce5d%2FshortcutIcon.ico?v=1606508241616"
+      sizes="16x16"
+    />
+
+    <!-- link for icons -->
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <!-- add font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Cookie"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .logo-image {
+        width: 28px;
+        height: 26px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: -6px;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #000000;
+      }
+
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #F61AEC;
+        color: white;
+      }
+
+      body {
+        width: 90%;
+        margin: 0 auto;
+        background-color: #1A1A1A;
+      }
+
+      header {
+        margin-top: 20px;
+        padding-bottom: 10px;
+        background-color: #000000;
+      }
+
+      .logo-row {
+        width: 150px;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      .logo {
+        width: 100%;
+        height: 150px;
+        text-align: center;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        color: #FFFFFF;
+        text-align: center;
+      }
+
+      .container {
+        background-color: #1A1A1A;
+        text-align: center;
+      }
+
+      .login-container {
+        background-color: #333333;
+        text-align: center;
+          }
+
+      .login-bar {
+        background-color: #F61AEC;
+        color: white;
+        text-align: center;
+        padding: 1px;
+      }
+      .input-login {
+        color: #C4C4C4;
+      }
+      
+      .text {
+        color: C4C4C4;
+      }
+    </style>
+  
+  <!-- Material Design Theming -->
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+// ...
+
+<script defer src="./init-firebase.js"></script>
+
+
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDDjc9KS8nmGmg0ix3mx63kLHytYbYSNG0",
+    authDomain: "adwiseapp-a9d98.firebaseapp.com",
+    databaseURL: "https://adwiseapp-a9d98.firebaseio.com",
+    projectId: "adwiseapp-a9d98",
+    storageBucket: "adwiseapp-a9d98.appspot.com",
+    messagingSenderId: "839990085264",
+    appId: "1:839990085264:web:1dc77970346b63198e7a15"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+    
+<script type="text/javascript">
+
+    /**
+     * Handles the sign in button press.
+     */
+    function toggleSignIn() {
+      if (firebase.auth().currentUser) {
+        firebase.auth().signOut();
+      } else {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        if (email.length < 4) {
+          alert('Please enter an email address.');
+          return;
+        }
+        if (password.length < 4) {
+          alert('Please enter a password.');
+          return;
+        }
+        // Sign in with email and pass.
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          document.getElementById('quickstart-sign-in').disabled = false;
+        });
+      }
+      document.getElementById('quickstart-sign-in').disabled = true;
+    }
+
+    /**
+     * Handles the sign up button press.
+     */
+    function handleSignUp() {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      if (email.length < 4) {
+        alert('Please enter an email address.');
+        return;
+      }
+      if (password.length < 4) {
+        alert('Please enter a password.');
+        return;
+      }
+      // Create user with email and pass.
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+    }
+
+    /**
+     * Sends an email verification to the user.
+     */
+    function sendEmailVerification() {
+      firebase.auth().currentUser.sendEmailVerification().then(function() {
+        // Email Verification sent!
+        alert('Email Verification Sent!');
+      });
+    }
+
+    function sendPasswordReset() {
+      var email = document.getElementById('email').value;
+      firebase.auth().sendPasswordResetEmail(email).then(function() {
+        // Password Reset Email Sent!
+        alert('Password Reset Email Sent!');
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/invalid-email') {
+          alert(errorMessage);
+        } else if (errorCode == 'auth/user-not-found') {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+    }
+
+    /**
+     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+     *    out, and that is where we update the UI.
+     */
+    function initApp() {
+      // Listening for auth state changes.
+      firebase.auth().onAuthStateChanged(function(user) {
+        document.getElementById('quickstart-verify-email').disabled = true;
+        if (user) {
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var providerData = user.providerData;
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+          document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+          if (!emailVerified) {
+            document.getElementById('quickstart-verify-email').disabled = false;
+          }
+        } else {
+          // User is signed out.
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+          document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+          document.getElementById('quickstart-account-details').textContent = 'null';
+        }
+        document.getElementById('quickstart-sign-in').disabled = false;
+      });
+      // [END authstatelistener]
+
+      document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
+      document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
+      document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
+      document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
+    }
+
+    window.onload = function() {
+      initApp();
+    };
+  </script>
+
+
+
+  </head>
+
+  <body>
+    <header>
+      <div class="row">
+        <div class="logo-row">
+          <img
+            src="https://cdn.glitch.com/40d004be-cae1-4009-9753-ec6962f66539%2FIcon%2044.png?v=1606516441520"
+            alt="logo"
+            class="logo"
+          />
+        </div>
+      </div>
+
+    </header>
+
+<br>
+
+
+<div class="container">
+
+
+
+    <div class="login-container">
+
+      <!-- Container for the demo -->
+      <div class="login-container"">
+        <div class="login-bar">
+          <h3>Log in/ Register</h3>
+        </div>
+        <br>
+        <div>
+          <p>Please enter your email and password</p>
+
+          <input class="input-login" style="display:inline;width:auto;" type="text" id="email" name="email" placeholder="Email"/>
+          &nbsp;&nbsp;&nbsp;
+          <input class="input-login" style="display:inline;width:auto;" type="password" id="password" name="password" placeholder="Password"/>
+          <br/><br/>
+          <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in" name="signin">Sign In</button>
+          &nbsp;&nbsp;&nbsp;
+          <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-up" name="signup">Sign Up</button>
+          &nbsp;&nbsp;&nbsp;
+        </div>
+        <br>
+          <button class="verify" disabled id="quickstart-verify-email" name="verify-email">Send Email Verification</button>
+          &nbsp;&nbsp;&nbsp;
+          <button class="reset" id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button>
+<br><br>
+          <!-- Container where we'll display the user details -->
+          <div class="text">
+            Status: <span id="quickstart-sign-in-status">Unknown</span>
+<br><br>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </body>
+</html>
