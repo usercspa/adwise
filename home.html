@@ -56,6 +56,12 @@ body {
 .container {
   background-color: #333333;
 }
+
+h1, h2, h3, p {
+  color: #FFFFFF;
+  text-align: center;
+}
+
 </style>
 	</head>
 
@@ -73,11 +79,33 @@ body {
   <a href="advicetips.html">How to give good advice?</a>
 </div>
 
-<div style="padding-left:16px">
+<div style="padding-left:16px" class="container">
 
-<h1> 
+<h1> Give career advice </h1>
 
+
+<textarea name="advice" id="advice" ols="40" rows="5" placeholder="Career advice"></textarea><br><br>
+
+<input id="industry" type="text" placeholder="Industry" required><br><br>
+
+<input id="country" type="country" placeholder="Country" required><br><br>
+
+<input id="company" type="text" placeholder="Company"><br><br>
+
+<input id="name" type="text" placeholder="Name"><br><br>
+
+<button onclick="myFunction()" value="Submit">Submit</button>
 </div>
+
+<script>
+function myFunction() {
+  document.getElementById("advice").submit();
+  document.getElementById("industry").submit();
+  document.getElementById("country").submit();
+  document.getElementById("name").submit();
+  document.getElementById("company").submit();
+}
+</script>
 
 
 
