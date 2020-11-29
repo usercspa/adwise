@@ -20,14 +20,15 @@ async function main() {
   // Add Firebase project configuration object here
 // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyCjenEqWmXfr-bCVU5vRiry2ondQbXhrOU",
-    authDomain: "learn-e1cb6.firebaseapp.com",
-    databaseURL: "https://learn-e1cb6.firebaseio.com",
-    projectId: "learn-e1cb6",
-    storageBucket: "learn-e1cb6.appspot.com",
-    messagingSenderId: "1004044510119",
-    appId: "1:1004044510119:web:c4754e5d286e8ad280cc82"
-  };
+  apiKey: "AIzaSyDdr9MunyX637exjpmhUrniwwA2iY8_ylo",
+  authDomain: "adwise-62059.firebaseapp.com",
+  databaseURL: "https://adwise-62059.firebaseio.com",
+  projectId: "adwise-62059",
+  storageBucket: "adwise-62059.appspot.com",
+  messagingSenderId: "153093046371",
+  appId: "1:153093046371:web:b17763f4b0e2c29c7f7856",
+  measurementId: "G-RRKVJFLMQG"
+};
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
