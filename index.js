@@ -9,6 +9,8 @@ import "firebase/firestore";
 
 import * as firebaseui from 'firebaseui';
 
+require('dotenv').config();
+
 // Document elements
 const loginButton = document.getElementById('login');
 const adviceContainer = document.getElementById('advice-container');
@@ -29,10 +31,19 @@ var resultsListener = null;
 async function main() {
 
   // Add Firebase project configuration object here
-
+// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "process.env.API_KEY",
+    authDomain: "adwiseapp-a9d98.firebaseapp.com",
+    databaseURL: "https://adwiseapp-a9d98.firebaseio.com",
+    projectId: "adwiseapp-a9d98",
+    storageBucket: "adwiseapp-a9d98.appspot.com",
+    messagingSenderId: "839990085264",
+    appId: "1:839990085264:web:1dc77970346b63198e7a15"
+  };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+ 
   // FirebaseUI config
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
