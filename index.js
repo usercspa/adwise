@@ -29,16 +29,7 @@ var resultsListener = null;
 async function main() {
 
   // Add Firebase project configuration object here
-// Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCjenEqWmXfr-bCVU5vRiry2ondQbXhrOU",
-    authDomain: "learn-e1cb6.firebaseapp.com",
-    databaseURL: "https://learn-e1cb6.firebaseio.com",
-    projectId: "learn-e1cb6",
-    storageBucket: "learn-e1cb6.appspot.com",
-    messagingSenderId: "1004044510119",
-    appId: "1:1004044510119:web:c4754e5d286e8ad280cc82"
-  };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
