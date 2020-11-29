@@ -11,24 +11,34 @@ import * as firebaseui from 'firebaseui';
 
 // Document elements
 const loginButton = document.getElementById('login');
+const adviceContainer = document.getElementById('advice-container');
 
-const form = document.getElementById('leave-message');
-const input = document.getElementById('message');
+const form = document.getElementById('getAdvice');
+const input1 = document.getElementById('id1');
+const input2 = document.getElementById('id2');
+const input3 = document.getElementById('id3');
+const input4 = document.getElementById('id4');
+const input5 = document.getElementById('id5');
+const input6 = document.getElementById('id6');
+const results = document.getElementById('displayAdvice');
+
+
+var loginListener = null;
+var resultsListener = null;
 
 async function main() {
 
   // Add Firebase project configuration object here
 // Your web app's Firebase configuration
   var firebaseConfig = {
-  apiKey: "AIzaSyDdr9MunyX637exjpmhUrniwwA2iY8_ylo",
-  authDomain: "adwise-62059.firebaseapp.com",
-  databaseURL: "https://adwise-62059.firebaseio.com",
-  projectId: "adwise-62059",
-  storageBucket: "adwise-62059.appspot.com",
-  messagingSenderId: "153093046371",
-  appId: "1:153093046371:web:b17763f4b0e2c29c7f7856",
-  measurementId: "G-RRKVJFLMQG"
-};
+    apiKey: "AIzaSyCjenEqWmXfr-bCVU5vRiry2ondQbXhrOU",
+    authDomain: "learn-e1cb6.firebaseapp.com",
+    databaseURL: "https://learn-e1cb6.firebaseio.com",
+    projectId: "learn-e1cb6",
+    storageBucket: "learn-e1cb6.appspot.com",
+    messagingSenderId: "1004044510119",
+    appId: "1:1004044510119:web:c4754e5d286e8ad280cc82"
+  };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
@@ -50,7 +60,7 @@ async function main() {
 
   const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-// Called when the user clicks the login button
+// Called when the user clicks the RSVP button
 loginButton.addEventListener("click",
  () => {
     if (firebase.auth().currentUser) {
@@ -61,20 +71,72 @@ loginButton.addEventListener("click",
       ui.start("#firebaseui-auth-container", uiConfig);
     }
 });
+// ...
 // Listen to the current Auth state
-firebase.auth().onAuthStateChanged((user)=> {
-  if (user) {
-    loginButton.textContent = "LOGOUT"
-  }
-  else {
-    loginButton.textContent = "Login/ Register"
-  }
+firebase.auth().onAuthStateChanged((user) => {
+ if (user){
+   loginButton.textContent = "LOGOUT";
+   // Show guestbook to logged-in users
+   adviceContainer.style.display = "block";
+   subscribeResults();
+ }
+ else{
+   loginButton.textContent = "Login/ Register";
+   // Hide guestbook for non-logged-in users
+   adviceContainer.style.display = "none";
+   unsubscribeResults();
+ }
+});
+
+// ..
+// Listen to the form submission
+form.addEventListener("submit", (e) => {
+ // Prevent the default form redirect
+ e.preventDefault();
+ // Write a new message to the database collection "guestbook"
+ firebase.firestore().collection("getAdvice").add({
+   text: input.value,
+   timestamp: Date.now(),
+   name: firebase.auth().currentUser.displayName,
+   userId: firebase.auth().currentUser.uid
+ })
+ // clear message input field
+ input.value = ""; 
+ // Return false to avoid redirect
+ return false;
 });
 
 
+function subscribeResults(){
+   // Create query for messages
+ getAdviceListener = firebase.firestore().collection("getAdvice")
+ .orderBy("timestamp","desc")
+ .onSnapshot((snaps) => {
+   // Reset page
+   getAdvice.innerHTML = "";
+   // Loop through documents in database
+   snaps.forEach((doc) => {
+     // Create an HTML entry for each document and add it to the chat
+     const entry = document.createElement("p");
+     entry.textContent = doc.data().name + ": " + doc.data().text;
+     getAdvice.appendChild(entry);
+   });
+ });
+};
+
+
+function unsubscribeResults(){
+ if (resultsListener != null)
+ {
+   resultsListener();
+   resultsListener = null;
+ }
+};
 
 }
 
 
 main();
+
+
 

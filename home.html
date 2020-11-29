@@ -86,13 +86,13 @@
       <a href="advice.html">Browse advice</a>
       <a href="advicetips.html">How to give good advice?</a>
     </div>
-
+ <section id="advice-container">
     <div style="padding-left:16px" class="container">
       <br>
       <h1>Give career advice</h1>
 
       <br />
-      <form>
+      <form id="getAdvice">
         <textarea
           name="advice"
           id="id1"
@@ -122,14 +122,17 @@
 
         <input id="id6" type="text" placeholder="Name" /><br /><br />
 
-        <button onclick="showInput();">Post</button><br />
+        <button type="submit" onclick="showInput();">Post</button><br />
+
       </form>
+    </section>
       <br>
     </div>
 
     <div class="container">
       <label><h2>Advice log:</h2></label>
       <p><span id="display"></span></p>
+      <section id="displayAdvice"></section>
     </div>
 
     <script language="JavaScript">
@@ -144,5 +147,7 @@
         document.getElementById("id6").value;
       }
     </script>
+
+    
   </body>
 </html>
